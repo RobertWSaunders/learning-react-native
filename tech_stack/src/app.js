@@ -5,7 +5,6 @@ import {creatStore } from 'redux';
 import reducers from './reducers';
 
 
-
 const App = () => {
   return (
     <Provider store={creatStore(reducers)}>
