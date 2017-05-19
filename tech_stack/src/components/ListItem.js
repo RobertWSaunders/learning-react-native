@@ -5,6 +5,15 @@ import * as actions from '../actions';
 import { connect } from 'react-redux';
 
 export default class ListItem extends Component {
+
+  renderDescription() {
+    if (this.props.library.id === this.props.selectedLibraryId) {
+      return (
+        <Text>{this.props.library.description}</Text>
+      );
+    }
+  }
+
   redner() {
 
     const { title, id } = this.props.library;
@@ -17,6 +26,7 @@ export default class ListItem extends Component {
               {title}
             </Text>
           </CardSection>
+          {this.renderDescription}
         </View>
       </TouchableWithoutFeedback>
     );
@@ -30,4 +40,10 @@ const styles = {
   }
 }
 
-export default connect(null, actions)(ListItem);
+const mapStateToProps = (state) => {
+  return {
+    selectedLibraryId: state.selectedLibraryId
+  };
+};
+
+export default connect(mapStateToProps, actions)(ListItem);
